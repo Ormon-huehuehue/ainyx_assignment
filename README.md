@@ -79,4 +79,3 @@ Run unit tests:
 ```bash
 go test ./internal/service/...
 ```
-# ainyx_assignment
