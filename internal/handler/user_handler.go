@@ -8,7 +8,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/zap"
 
-	"go-backend-task/db/sqlc"
+	db "go-backend-task/db/sqlc"
 	"go-backend-task/internal/logger"
 	"go-backend-task/internal/models"
 	"go-backend-task/internal/repository"
@@ -27,7 +27,7 @@ func NewUserHandler(repo *repository.Repository) *UserHandler {
 	}
 }
 
-func (h *UserHandler) CreateUser(c *fiber.Ctx) error {
+func (h *UserHandler) CreateUser(c *fiber.Ctx) error { // h *Userhandler is the receiver -> similar to &self in Rust
 	var req models.CreateUserRequest
 	if err := c.BodyParser(&req); err != nil {
 		logger.Log.Error("Failed to parse request body", zap.Error(err))
@@ -39,7 +39,7 @@ func (h *UserHandler) CreateUser(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	dob, err := time.Parse("2006-01-02", req.Dob)
+	dob, err := time.Parse("2006-01-02", req.Dob) // go's default date format is year-month-day ( 06 -> year, 01 -> month, 02 -> day)
 	if err != nil {
 		logger.Log.Error("Failed to parse DOB", zap.Error(err))
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid date format, use YYYY-MM-DD"})
@@ -67,7 +67,7 @@ func (h *UserHandler) CreateUser(c *fiber.Ctx) error {
 }
 
 func (h *UserHandler) GetUser(c *fiber.Ctx) error {
-	id, err := strconv.Atoi(c.Params("id"))
+	id, err := strconv.Atoi(c.Params("id")) // Ascii To Integer
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid user ID"})
 	}
