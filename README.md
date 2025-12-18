@@ -64,13 +64,13 @@ A RESTful API in Go managing user data with dynamic age calculation.
 
 ## API Endpoints
 
-| Method   | Endpoint            | Description                                 |
-| :------- | :------------------ | :------------------------------------------ |
-| `POST`   | `/api/v1/users`     | Create a new user                           |
-| `GET`    | `/api/v1/users/:id` | Get a user by ID                            |
-| `PUT`    | `/api/v1/users/:id` | Update a user                               |
-| `DELETE` | `/api/v1/users/:id` | Delete a user                               |
-| `GET`    | `/api/v1/users`     | List users (Pagination: `?page=1&limit=10`) |
+| Method   | Endpoint     | Description                                 |
+| :------- | :----------- | :------------------------------------------ |
+| `POST`   | `/users`     | Create a new user                           |
+| `GET`    | `/users/:id` | Get a user by ID                            |
+| `PUT`    | `/users/:id` | Update a user                               |
+| `DELETE` | `/users/:id` | Delete a user                               |
+| `GET`    | `/users`     | List users (Pagination: `?page=1&limit=10`) |
 
 ## Testing
 
