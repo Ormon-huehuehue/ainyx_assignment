@@ -15,9 +15,14 @@ import (
 
 func main() {
 	// Load environment variables
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load(); err != nil { // similar to "if let" in rust
 		log.Println("No .env file found")
 	}
+
+	// Rust equivalent
+	// if let Err(_) = dotenv::load() {
+	// 	eprintln!("No .env file found");
+	// }
 
 	// Initialize Logger
 	logger.InitLogger()
